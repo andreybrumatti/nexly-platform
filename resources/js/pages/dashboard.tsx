@@ -3,6 +3,7 @@ import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
+import { useEchoPublic } from '@laravel/echo-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,7 +12,16 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+interface PayloadTesteEvent {
+    message: string;
+}
+
 export default function Dashboard() {
+
+    useEchoPublic("test-channel", "TestEvent", (e: PayloadTesteEvent) => {
+        console.log(e.message);
+    });
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
