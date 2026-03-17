@@ -1,9 +1,9 @@
 import { Head } from '@inertiajs/react';
+import { useEchoPublic } from '@laravel/echo-react';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
-import { useEchoPublic } from '@laravel/echo-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

@@ -1,9 +1,15 @@
-export default function AppLogoImage({...props}) {
-        return (
-                <img
-                    src="/assets/simbol-logo.jpg"
-                    alt="Nexly Plataform" {...props}
-                    className={"h-8 w-40 p-1 object-fill"}
-                 />
+import { cn } from '@/lib/utils';
+import { ComponentProps } from 'react';
+
+interface AppLogoProps extends ComponentProps<'img'> {}
+
+export default function AppLogoImage({ className, ...props }: AppLogoProps) {
+    return (
+        <img
+            src="/assets/simbol-logo.jpg"
+            alt="Nexly Platform"
+            className={cn('p-1', className)}
+            {...props}
+        />
     );
 }
