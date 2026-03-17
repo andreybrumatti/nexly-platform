@@ -1,19 +1,35 @@
 import AppLogoImage from '@/components/app-logo-image';
+import { cn } from '@/lib/utils';
+import { useSidebar } from './ui/sidebar';
 
 export default function AppLogo() {
+    const { state } = useSidebar();
+    const isCollapsed = state === 'collapsed';
+
     return (
         <>
-            <div className="flex aspect-square size-10 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
-                <AppLogoImage />
+            <div className={cn(
+                "flex aspect-square items-center justify-center rounded-md text-sidebar-primary-foreground transition-all duration-300",
+                isCollapsed ? "w-12 h-8" : "w-14 h-12"
+            )}>
+                <AppLogoImage
+                    className={cn(
+                        "rounded-md transition-all duration-300",
+                        isCollapsed ? "w-12 h-8" : "w-14 h-12"
+                    )}
+                />
             </div>
-            <div className="ml-1 grid flex-1 text-left text-sm">
-                <span className="mb-0.5 truncate leading-tight font-semibold">
-                    Nexly
-                </span>
-                <span className="text-muted-foreground">
-                    Plataform
-                </span>
-            </div>
+
+            {!isCollapsed && (
+                <div className="ml-1 grid flex-1 text-left text-sm transition-all animate-in fade-in duration-300">
+                    <span className="mb-0.5 truncate leading-tight font-semibold">
+                        Nexly
+                    </span>
+                    <span className="text-muted-foreground text-xs">
+                        Plataform
+                    </span>
+                </div>
+            )}
         </>
     );
 }
