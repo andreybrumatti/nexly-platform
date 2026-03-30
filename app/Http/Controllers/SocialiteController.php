@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\DB;
+use App\Models\Company;
 
 class SocialiteController extends Controller
 {
@@ -27,21 +29,29 @@ class SocialiteController extends Controller
             return redirect('/login')->with('error', 'Falha ao autenticar com Google');
         }
 
-        $user = User::updateOrCreate(
-            ['google_id' => $googleUser->id],
-            [
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                'google_token' => $googleUser->token,
-                'google_refresh_token' => $googleUser->refreshToken,
-                'password' => bcrypt(Str::random(16)),
-            ]
-        );
+        DB::transaction(function () use ($googleUser) {
+            $company = Company::updateOrCreate(
+                ['name' => $googleUser->name],
+                ['name' => $googleUser->name],
+            );
 
-        Auth::login($user, true);
+            $user = User::updateOrCreate(
+                ['google_id' => $googleUser->id],
+                [
+                    'company_id' => $company->id,
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'google_token' => $googleUser->token,
+                    'google_refresh_token' => $googleUser->refreshToken,
+                    'password' => bcrypt(Str::random(16)),
+                ]
+            );
 
-        session(['login_google' => true]);
-        session()->save();
+            Auth::login($user, true);
+
+            session(['login_google' => true]);
+            session()->save();
+        });
 
         return to_route('dashboard');
     }

@@ -9,6 +9,7 @@ import { Spinner } from '@/components/ui/spinner';
 import AuthLayout from '@/layouts/auth-layout';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
+import { redirect as googleRedirect } from '@/routes/socialite';
 
 export default function Register() {
     return (
@@ -19,14 +20,16 @@ export default function Register() {
             <Head title="Cadastro" />
 
             <div className="grid gap-6">
-                <Button
-                    variant="outline"
-                    className="w-full py-6 font-medium border-slate-800 bg-[#161B29] text-slate-300 rounded-xl shadow-sm transition-all active:scale-[0.98] hover:bg-slate-800 hover:text-white cursor-pointer"
-                    type="button"
-                >
-                    <img src="/assets/google-icon-logo.svg" alt="Google Logo" className="mr-2 h-5 w-5" />
-                    Cadastrar com Google
-                </Button>
+                <a href={googleRedirect.url()} className="w-full">
+                    <Button
+                        variant="outline"
+                        className="w-full py-6 font-medium border-slate-800 bg-[#161B29] text-slate-300 rounded-xl shadow-sm transition-all active:scale-[0.98] hover:bg-slate-800 hover:text-white cursor-pointer"
+                        type="button"
+                    >
+                        <img src="/assets/google-icon-logo.svg" alt="Google Logo" className="mr-2 h-5 w-5" />
+                        Cadastrar com Google
+                    </Button>
+                </a>
 
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center">
@@ -49,7 +52,7 @@ export default function Register() {
                         <>
                             <div className="grid gap-4">
                                 <div className="grid gap-2">
-                                    <Label htmlFor="name" className="text-slate-300 font-medium ml-1">Nome completo</Label>
+                                    <Label htmlFor="name" className="text-slate-300 font-medium ml-1">Nome da Empresa</Label>
                                     <Input
                                         id="name"
                                         type="text"
@@ -58,7 +61,7 @@ export default function Register() {
                                         tabIndex={1}
                                         autoComplete="name"
                                         name="name"
-                                        placeholder="Seu nome completo"
+                                        placeholder="Nome da empresa"
                                         className="py-6 border-slate-800 bg-[#161B29] focus:ring-[#1d7ff0] focus:border-[#1d7ff0] text-white placeholder:text-slate-600 rounded-xl"
                                     />
                                     <InputError message={errors.name} />
