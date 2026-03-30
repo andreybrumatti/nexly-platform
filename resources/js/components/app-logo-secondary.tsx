@@ -1,15 +1,16 @@
 import { cn } from '@/lib/utils';
 import { ComponentProps } from 'react';
 
-interface AppLogoProps extends ComponentProps<'img'> {}
+interface AppLogoSecondary extends ComponentProps<'img'> {}
 
-export default function AppLogoImage({ className, ...props }: AppLogoProps) {
+export default function AppLogoSecondary({ className, ...props }: AppLogoSecondary) {
     return (
         <img
-            src="/assets/logo-nexly-complete.png"
+            src="/assets/logo.png"
             alt="Nexly Platform"
             className={cn('p-1', className)}
             {...props}
         />
     );
 }
+

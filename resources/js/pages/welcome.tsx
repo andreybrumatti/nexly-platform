@@ -22,11 +22,10 @@ export default function Welcome({
             <Head title="Nexly - Preveja o crescimento do seu negócio" />
 
             <nav className="sticky top-0 z-50 flex items-center justify-between bg-[#0B0F1A]/80 px-6 py-4 backdrop-blur-md lg:px-12 border-b border-slate-800/50">
-                <div className="flex items-center gap-2">
-                    <div className="flex items-center justify-center rounded text-white shadow-lg shadow-blue-500/20">
-                        <AppLogoImage className="w-16 h-14 rounded-md"/>
-                    </div>
-                    <span className="text-xl font-bold tracking-tight text-white">Nexly</span>
+                <div className="flex items-center">
+                        <div className="flex items-center justify-center">
+                            <AppLogoImage className="w-60 h-35 rounded-md"/>
+                        </div>
                 </div>
 
                 <div className="flex items-center gap-6">

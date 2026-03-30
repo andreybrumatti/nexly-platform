@@ -22,11 +22,8 @@ export default function AuthSimpleLayout({
                     }}
                 />
 
-                <div className="relative z-10 p-12">
-                    <div className="flex items-center gap-3">
-                        <AppLogoImage className="w-18 h-16 rounded-md" />
-                        <span className="text-2xl font-bold text-white tracking-tight text-shadow-sm">Nexly</span>
-                    </div>
+                <div className="relative z-10 pt-5">
+                    <AppLogoImage className="w-65 h-40 rounded-md" />
                 </div>
 
                 <div className="relative z-10 p-12 mb-12">
